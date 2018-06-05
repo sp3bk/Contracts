@@ -17,16 +17,29 @@ import ListItemText from "@material-ui/core/ListItemText";
 import ListSubheader from "@material-ui/core/ListSubheader";
 import Paper from "@material-ui/core/Paper";
 
-const styles = {
+const styles = theme => ({
   card: {
     width: 500,
-    maxHeight: 1500
+    height: 500
   },
   media: {
     height: 0,
     paddingTop: "56.25%"
-  }
-};
+  },
+  root: theme.mixins.gutters({
+    paddingTop: 16,
+    paddingBottom: 16,
+    marginTop: theme.spacing.unit * 3,
+    width: 1025
+  }),
+  rootcard: theme.mixins.gutters({
+    paddingTop: 16,
+    paddingBottom: 16,
+    marginTop: theme.spacing.unit * 3,
+    width: 550
+  })
+});
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -115,7 +128,7 @@ class App extends React.Component {
   render() {
     const { classes } = this.props;
     return (
-      <body class="container2" background="">
+      <body class="bodycontainer" background="">
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
           <a class="navbar-brand" href="#">
             Capital One
@@ -167,45 +180,62 @@ class App extends React.Component {
             href="https://bootswatch.com/4/cerulean/bootstrap.min.css"
           />
 
-          <div className="container3">
-            <Form
-              className="center"
-              updateParent={(field, newValue) =>
-                this.updateField(field, newValue)
-              }
-              clicker={(name, company, contractdetail, gender, picture) =>
-                this.handleClick(name, company, contractdetail, gender, picture)
-              }
-            />
+          <div className="formcontainer">
+            <Paper className={classes.root} elevation={4}>
+              <Form
+                className="center"
+                updateParent={(field, newValue) =>
+                  this.updateField(field, newValue)
+                }
+                clicker={(name, company, contractdetail, gender, picture) =>
+                  this.handleClick(
+                    name,
+                    company,
+                    contractdetail,
+                    gender,
+                    picture
+                  )
+                }
+              />
+            </Paper>
           </div>
 
           <hr class="aligncenter" height="5px" border-top="4px" />
+
           <div class="row">
             <div class="col s12 m2 20 ">
               {this.state.array.map(contracts => (
                 <div className="horizontal">
-                  <Card className={classes.card}>
-                    <CardMedia
-                      className={classes.media}
-                      image={contracts.picture}
-                    />
-                    <Typography gutterBottom variant="headline" component="h2">
-                      Name: {contracts.name}
-                    </Typography>
-                    <p>-{contracts.company}-</p>
-                    <p>Contract Details:</p>
-                    <CardContent>{contracts.contractdetail}</CardContent>
-                    <CardActions>
-                      <Button
-                        variant="raised"
-                        size="small"
-                        color="primary"
-                        onClick={() => this.removeItem(contracts.id)}
+                  <Paper className={classes.rootcard} elevation={4}>
+                    <Card className={classes.card}>
+                      <CardMedia
+                        className={classes.media}
+                        image={contracts.picture}
+                      />
+                      <Typography
+                        gutterBottom
+                        variant="headline"
+                        component="h2"
                       >
-                        Delete {contracts.name}
-                      </Button>
-                    </CardActions>
-                  </Card>
+                        Name: {contracts.name}
+                      </Typography>
+                      <p>-{contracts.company}-</p>
+                      <p>Contract Details:</p>
+                      <CardContent>{contracts.contractdetail}</CardContent>
+                      <div className="buttoncontainer">
+                        <CardActions>
+                          <Button
+                            variant="raised"
+                            size="small"
+                            color="primary"
+                            onClick={() => this.removeItem(contracts.id)}
+                          >
+                            Delete
+                          </Button>
+                        </CardActions>
+                      </div>
+                    </Card>
+                  </Paper>
                 </div>
               ))}
             </div>

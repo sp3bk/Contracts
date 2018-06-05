@@ -28,18 +28,28 @@
   display: table-cell;
   vertical-align: middle;
 }
-.container3 {
+.formcontainer {
+  margin-left: 475px;
   padding: 20px;
   color: white;
-  background: rgba(0, 0, 0, 0.2);
-  height: 100%;
+  background: rgba(0, 0, 120, 0.2);
+  display: block;
+  text-align: center;
+  width: 1063px;
 }
-.container2 {
+
+.buttoncontainer {
+  position: relative;
+  left: 40%;
+}
+
+.bodycontainer {
   background-image: url("https://i0.wp.com/techweek.com/wp-content/uploads/2017/06/cap-one-logo.png?fit=3000%2C1036&ssl=1");
   height: 100%;
   background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 @keyframes App-logo-spin {
   from {
