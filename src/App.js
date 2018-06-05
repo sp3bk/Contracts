@@ -179,6 +179,7 @@ class App extends React.Component {
             />
           </div>
 
+          <hr class="aligncenter" height="5px" border-top="4px" />
           <div class="row">
             <div class="col s12 m2 20 ">
               {this.state.array.map(contracts => (
